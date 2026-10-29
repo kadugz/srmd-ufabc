@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Biblioteca Integrada — SRMD UFABC</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="container header-top-inner">
+      <a class="brand" href="index.html" aria-label="SRMD, página inicial">
+        <span class="brand-logo" aria-hidden="true">S</span>
+        <span class="brand-text">
+          <span class="brand-mark">SRMD</span>
+          <span class="brand-sub">UFABC • Recomendações Acadêmicas</span>
+        </span>
+      </a>
+      <span class="history-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2z"/></svg>
+        <span>Acervo integrado à Biblioteca UFABC</span>
+      </span>
+      <nav class="main-nav" aria-label="Navegação principal" id="main-nav-mobile">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="grafo.html">Grafo de Recomendações</a></li>
+          <li><a href="grade.html">Minha Grade</a></li>
+          <li><a href="biblioteca.html" aria-current="page">Biblioteca Integrada</a></li>
+        </ul>
+      </nav>
+      <button class="icon-btn user-btn" aria-label="Minha conta (login opcional)" title="Login opcional (RA02)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="main-nav-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="a11y-bar">
+    <div class="container a11y-bar-inner">
+      <span class="wcag-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+        WCAG 2.2 AA/AAA · Acessibilidade semântica · UFABC ProGrad
+      </span>
+      <div class="a11y-controls" role="group" aria-label="Preferências de exibição">
+        <span class="a11y-label">Tamanho do texto:</span>
+        <button class="fontsize-btn" data-size="100" aria-pressed="true">A <span>100%</span></button>
+        <button class="fontsize-btn" data-size="125" aria-pressed="false">A+ <span>125%</span></button>
+        <button class="fontsize-btn" data-size="150" aria-pressed="false">A++ <span>150%</span></button>
+        <button class="contrast-btn" id="contrast-toggle" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+          Alto contraste
+        </button>
+        <button class="audio-btn" id="audio-toggle" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 8a5 5 0 0 1 0 8"/></svg>
+          Áudio-descrição textual
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo-principal">
+  <div class="container">
+
+    <section class="section">
+      <div class="section-head">
+        <h1>Biblioteca Integrada</h1>
+        <p data-readaloud>Busque a bibliografia básica e complementar de qualquer disciplina e veja se o material está disponível físico, digital ou em formato acessível (RF05, RF06).</p>
+      </div>
+
+      <form class="search-form" style="background:var(--surface);box-shadow:var(--shadow-sm);border:1px solid var(--border);" role="search">
+        <label for="busca-biblioteca" class="sr-only">Buscar material por disciplina</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" id="busca-biblioteca" placeholder="Buscar por disciplina, autor ou código (ex.: MCTA018-13)">
+        </div>
+        <button type="submit" class="btn btn-primary">Buscar</button>
+      </form>
+
+      <div class="filter-row" role="group" aria-label="Filtrar por formato disponível">
+        <button type="button" class="filter-chip" data-filter="todos" aria-pressed="true">Todos os formatos</button>
+        <button type="button" class="filter-chip" data-filter="fisico" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2z"/></svg>
+          Físico
+        </button>
+        <button type="button" class="filter-chip" data-filter="digital" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+          Digital
+        </button>
+        <button type="button" class="filter-chip" data-filter="acessivel" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 8a5 5 0 0 1 0 8"/></svg>
+          Alternativa acessível
+        </button>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="biblio-list">
+
+        <div class="card biblio-card" data-formats="fisico digital">
+          <div class="biblio-top">
+            <div>
+              <span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">MCTA018-13</span>
+              <h2>Estruturas de Dados e Análise de Algoritmos</h2>
+            </div>
+          </div>
+          <div class="biblio-meta">
+            <span class="availability ok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2z"/></svg>
+              3 exemplares físicos disponíveis
+            </span>
+            <span class="availability digital">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+              Versão digital no acervo online
+            </span>
+          </div>
+          <div class="biblio-bib">
+            <div>
+              <h4>Bibliografia básica</h4>
+              <ul>
+                <li>CORMEN, T. H. et al. <em>Algoritmos: teoria e prática</em>. Rio de Janeiro: Elsevier, 2012.</li>
+                <li>ZIVIANI, N. <em>Projeto de Algoritmos</em>. São Paulo: Cengage Learning, 2011.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Bibliografia complementar</h4>
+              <ul>
+                <li>SEDGEWICK, R.; WAYNE, K. <em>Algorithms</em>. 4. ed. Boston: Addison-Wesley, 2011.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card biblio-card" data-formats="digital acessivel">
+          <div class="biblio-top">
+            <div>
+              <span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">MCTA024-13</span>
+              <h2>Teoria dos Grafos</h2>
+            </div>
+          </div>
+          <div class="biblio-meta">
+            <span class="availability digital">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
+              Versão digital no acervo online
+            </span>
+            <span class="availability a11y">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 8a5 5 0 0 1 0 8"/></svg>
+              Alternativa em áudio disponível
+            </span>
+          </div>
+          <div class="biblio-bib">
+            <div>
+              <h4>Bibliografia básica</h4>
+              <ul>
+                <li>BONDY, J. A.; MURTY, U. S. R. <em>Graph Theory</em>. London: Springer, 2008.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Bibliografia complementar</h4>
+              <ul>
+                <li>DIESTEL, R. <em>Graph Theory</em>. 5. ed. Berlin: Springer, 2017.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="card biblio-card" data-formats="fisico">
+          <div class="biblio-top">
+            <div>
+              <span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">MCTA022-13</span>
+              <h2>Sistemas Operacionais</h2>
+            </div>
+          </div>
+          <div class="biblio-meta">
+            <span class="availability ok">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2z"/></svg>
+              1 exemplar físico disponível
+            </span>
+          </div>
+          <div class="biblio-bib">
+            <div>
+              <h4>Bibliografia básica</h4>
+              <ul>
+                <li>SILBERSCHATZ, A.; GALVIN, P.; GAGNE, G. <em>Fundamentos de Sistemas Operacionais</em>. Rio de Janeiro: LTC, 2015.</li>
+              </ul>
+            </div>
+            <div>
+              <h4>Bibliografia complementar</h4>
+              <ul>
+                <li>TANENBAUM, A. S. <em>Sistemas Operacionais Modernos</em>. 4. ed. São Paulo: Pearson, 2016.</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card" style="display:flex;gap:var(--space-5);align-items:center;flex-wrap:wrap;justify-content:space-between;">
+        <div>
+          <h3>Não encontrou um material?</h3>
+          <p class="text-muted" style="font-size:.9rem;margin-top:.3rem;">
+            Envie uma sugestão de correção sobre a bibliografia de qualquer disciplina.
+          </p>
+        </div>
+        <a class="suggest-link btn btn-secondary" href="index.html#sugestao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          Sugerir correção
+        </a>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <h2>Universidade Federal do ABC — SRMD</h2>
+      <p>Sistema de Apoio ao Planejamento Acadêmico e Integração de Materiais Didáticos</p>
+    </div>
+    <nav class="footer-links" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="grafo.html">Grafo de Recomendações</a>
+      <a href="grade.html">Minha Grade</a>
+      <a href="biblioteca.html">Biblioteca Integrada</a>
+    </nav>
+  </div>
+  <div class="container footer-bottom">© Pró-Reitoria de Graduação (ProGrad) · UFABC — protótipo de interface, sem coleta de dados reais.</div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>

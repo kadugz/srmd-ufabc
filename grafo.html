@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Grafo de Recomendações — SRMD UFABC</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip-link" href="#conteudo-principal">Pular para o conteúdo principal</a>
+
+<header class="site-header">
+  <div class="header-top">
+    <div class="container header-top-inner">
+      <a class="brand" href="index.html" aria-label="SRMD, página inicial">
+        <span class="brand-logo" aria-hidden="true">S</span>
+        <span class="brand-text">
+          <span class="brand-mark">SRMD</span>
+          <span class="brand-sub">UFABC • Recomendações Acadêmicas</span>
+        </span>
+      </a>
+      <span class="history-chip">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2z"/></svg>
+        <span>Histórico importado: Engenharia / BC&amp;T • 6º Quadrimestre</span>
+      </span>
+      <nav class="main-nav" aria-label="Navegação principal" id="main-nav-mobile">
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="grafo.html" aria-current="page">Grafo de Recomendações</a></li>
+          <li><a href="grade.html">Minha Grade</a></li>
+          <li><a href="biblioteca.html">Biblioteca Integrada</a></li>
+        </ul>
+      </nav>
+      <button class="icon-btn user-btn" aria-label="Minha conta (login opcional)" title="Login opcional (RA02)">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+      </button>
+      <button class="icon-btn nav-toggle" aria-label="Abrir menu de navegação" aria-expanded="false" aria-controls="main-nav-mobile">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <div class="a11y-bar">
+    <div class="container a11y-bar-inner">
+      <span class="wcag-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+        WCAG 2.2 AA/AAA · Acessibilidade semântica · UFABC ProGrad
+      </span>
+      <div class="a11y-controls" role="group" aria-label="Preferências de exibição">
+        <span class="a11y-label">Tamanho do texto:</span>
+        <button class="fontsize-btn" data-size="100" aria-pressed="true">A <span>100%</span></button>
+        <button class="fontsize-btn" data-size="125" aria-pressed="false">A+ <span>125%</span></button>
+        <button class="fontsize-btn" data-size="150" aria-pressed="false">A++ <span>150%</span></button>
+        <button class="contrast-btn" id="contrast-toggle" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 3a9 9 0 0 1 0 18z" fill="currentColor" stroke="none"/></svg>
+          Alto contraste
+        </button>
+        <button class="audio-btn" id="audio-toggle" aria-pressed="false">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 9v6h4l5 4V5L8 9H4z"/><path d="M17 8a5 5 0 0 1 0 8"/></svg>
+          Áudio-descrição textual
+        </button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<main id="conteudo-principal">
+  <div class="container">
+
+    <section class="section">
+      <div class="discipline-head">
+        <div>
+          <div class="discipline-meta">
+            <span class="code">MCTA018-13</span>
+            <span class="badge badge-blue">Matriz curricular obrigatória</span>
+            <span class="badge badge-slate">TPI: 4-2-4 · 6 créditos</span>
+            <span class="badge badge-amber">Obrigatória no BCC</span>
+          </div>
+          <h1>Estruturas de Dados e Análise de Algoritmos</h1>
+          <p class="text-muted" style="max-width:65ch;margin-top:.4rem;">
+            Bacharelado em Ciência da Computação (CMCC · UFABC) — ordenação assintótica, árvores balanceadas, grafos e complexidade computacional.
+          </p>
+        </div>
+        <div class="view-toggle" role="group" aria-label="Como visualizar os pré-requisitos">
+          <button type="button" data-view="grafo" aria-pressed="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h7l5 6-5 6H7"/></svg>
+            Ver grafo
+          </button>
+          <button type="button" data-view="lista" aria-pressed="false">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M8 6h13M8 12h13M8 18h13"/><circle cx="3" cy="6" r="1.5" fill="currentColor"/><circle cx="3" cy="12" r="1.5" fill="currentColor"/><circle cx="3" cy="18" r="1.5" fill="currentColor"/></svg>
+            Ver lista
+          </button>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="summary-box">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 8h.01M11 12h1v5h1"/></svg>
+        <div>
+          <h2>Síntese acessível das dependências (transcrição estruturada)</h2>
+          <p data-readaloud>
+            Você está analisando a disciplina MCTA018-13, Estruturas de Dados e Análise de Algoritmos.
+            Esta disciplina está com status <strong>Liberada para matrícula</strong>, porque todos os
+            pré-requisitos diretos já foram concluídos: <strong>Bases Computacionais da Ciência</strong>
+            (cursada com nota A) e <strong>Programação Estruturada</strong> (cursada com nota B).
+            A aprovação nesta disciplina desbloqueia diretamente 3 disciplinas avançadas:
+            Teoria dos Grafos, Sistemas Operacionais e Compiladores.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <h2>Legenda curricular multimodal</h2>
+      <p class="text-muted" style="margin-top:.35rem;max-width:70ch;">
+        Conforme o critério WCAG 1.4.1, o status de cada disciplina é sempre transmitido por
+        forma geométrica, ícone e texto — nunca apenas por cor. Contraste calibrado em no mínimo 4,5:1.
+      </p>
+      <div class="legend-grid">
+        <div class="legend-card">
+          <span class="legend-shape shape-star" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.8 5.6H20l-4.6 3.3 1.8 5.6L12 13.2 6.8 16.5l1.8-5.6L4 7.6h6.2z"/></svg>
+          </span>
+          <span class="legend-text">
+            <strong>Cursada e aprovada</strong>
+            <span>Forma: estrela de 5 pontas · marca de concluída</span>
+          </span>
+        </div>
+        <div class="legend-card">
+          <span class="legend-shape shape-circle" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7l8 5-8 5z"/></svg>
+          </span>
+          <span class="legend-text">
+            <strong>Liberada para matrícula</strong>
+            <span>Forma: círculo perfeito · ícone de avanço</span>
+          </span>
+        </div>
+        <div class="legend-card">
+          <span class="legend-shape shape-square" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+          </span>
+          <span class="legend-text">
+            <strong>Bloqueada</strong>
+            <span>Forma: quadrado rígido · ícone de cadeado fechado</span>
+          </span>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="card">
+        <div class="graph-toolbar">
+          <div>
+            <h2>Fluxo de pré-requisitos e desdobramentos da disciplina</h2>
+            <p class="text-muted" style="margin-top:.3rem;font-size:.9rem;">
+              Navegue pelos estágios curriculares usando Tab ou clique em cada disciplina (alvo mínimo de 60×60&nbsp;px, com contraste garantido).
+            </p>
+          </div>
+          <button type="button" class="btn btn-secondary btn-sm" data-focus-node>Focar EDAA</button>
+        </div>
+
+        <!-- Visualização em grafo -->
+        <div class="graph-wrap" data-panel="grafo">
+          <div class="graph-columns">
+
+            <div class="graph-col">
+              <div class="graph-col-title">1º &amp; 2º quadrimestres<br>Bases comuns</div>
+              <button type="button" class="node is-cursada">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6H20l-4.6 3.3 1.8 5.6L12 13.2 6.8 16.5l1.8-5.6L4 7.6h6.2z"/></svg></span>
+                <span>
+                  <span class="node-code">MCZA001-13</span>
+                  <span class="node-name">Bases Computacionais</span>
+                  <span class="node-status">Cursada (nota A)</span>
+                </span>
+              </button>
+              <button type="button" class="node is-cursada">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6H20l-4.6 3.3 1.8 5.6L12 13.2 6.8 16.5l1.8-5.6L4 7.6h6.2z"/></svg></span>
+                <span>
+                  <span class="node-code">BCMA001-13</span>
+                  <span class="node-name">Funções de 1 Variável</span>
+                  <span class="node-status">Cursada (nota B)</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="graph-col">
+              <div class="graph-col-title">3º quadrimestre<br>Pré-requisitos diretos</div>
+              <button type="button" class="node is-cursada">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6H20l-4.6 3.3 1.8 5.6L12 13.2 6.8 16.5l1.8-5.6L4 7.6h6.2z"/></svg></span>
+                <span>
+                  <span class="node-code">MCTA010-13</span>
+                  <span class="node-name">Prog. Estruturada</span>
+                  <span class="node-status">Cursada (nota B)</span>
+                </span>
+              </button>
+              <button type="button" class="node is-cursada">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2l1.8 5.6H20l-4.6 3.3 1.8 5.6L12 13.2 6.8 16.5l1.8-5.6L4 7.6h6.2z"/></svg></span>
+                <span>
+                  <span class="node-code">BCMA004-13</span>
+                  <span class="node-name">Intr. Álgebra Linear</span>
+                  <span class="node-status">Cursada (nota C)</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="graph-col is-focus">
+              <div class="graph-col-title">4º quadrimestre<br>Disciplina em foco</div>
+              <button type="button" class="node is-liberada is-foco" aria-label="MCTA018-13, Estruturas de Dados, status liberada para matrícula, disciplina em foco">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="currentColor"><path d="M9 7l8 5-8 5z"/></svg></span>
+                <span>
+                  <span class="node-code">MCTA018-13</span>
+                  <span class="node-name">Estruturas de Dados</span>
+                  <span class="node-status">Liberada p/ matrícula</span>
+                </span>
+              </button>
+            </div>
+
+            <div class="graph-col">
+              <div class="graph-col-title">Quadrimestres seguintes<br>Desbloqueadas por EDAA</div>
+              <button type="button" class="node is-bloqueada">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+                <span>
+                  <span class="node-code">MCTA024-13</span>
+                  <span class="node-name">Teoria dos Grafos</span>
+                  <span class="node-status">Bloqueada</span>
+                </span>
+              </button>
+              <button type="button" class="node is-bloqueada">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+                <span>
+                  <span class="node-code">MCTA022-13</span>
+                  <span class="node-name">Sistemas Operacionais</span>
+                  <span class="node-status">Bloqueada</span>
+                </span>
+              </button>
+              <button type="button" class="node is-bloqueada">
+                <span class="node-shape" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg></span>
+                <span>
+                  <span class="node-code">MCTA030-13</span>
+                  <span class="node-name">Compiladores</span>
+                  <span class="node-status">Bloqueada</span>
+                </span>
+              </button>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Visualização em lista acessível (RF02) -->
+        <div class="list-view" data-panel="lista" hidden>
+          <ol>
+            <li>
+              <strong>MCZA001-13 — Bases Computacionais da Ciência</strong>
+              <span class="list-status status-cursada">Cursada (nota A)</span>
+            </li>
+            <li>
+              <strong>BCMA001-13 — Funções de 1 Variável</strong>
+              <span class="list-status status-cursada">Cursada (nota B)</span>
+            </li>
+            <li>
+              <strong>MCTA010-13 — Programação Estruturada</strong>
+              <span class="list-status status-cursada">Cursada (nota B)</span>
+            </li>
+            <li>
+              <strong>BCMA004-13 — Introdução à Álgebra Linear</strong>
+              <span class="list-status status-cursada">Cursada (nota C)</span>
+            </li>
+            <li>
+              <strong>MCTA018-13 — Estruturas de Dados e Análise de Algoritmos</strong>
+              <span class="list-status status-liberada">Liberada para matrícula</span>
+              <p class="text-muted" style="margin-top:.4rem;font-size:.88rem;">
+                Para cursar MCTA018-13, você precisa de MCZA001-13 e MCTA010-13 — ambas já concluídas.
+              </p>
+              <span class="text-muted" style="font-size:.82rem;">Cursar esta disciplina libera:</span>
+              <ul class="sub-list">
+                <li>MCTA024-13 — Teoria dos Grafos <span class="list-status status-bloqueada">(bloqueada)</span></li>
+                <li>MCTA022-13 — Sistemas Operacionais <span class="list-status status-bloqueada">(bloqueada)</span></li>
+                <li>MCTA030-13 — Compiladores <span class="list-status status-bloqueada">(bloqueada)</span></li>
+              </ul>
+            </li>
+          </ol>
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="discipline-head" style="margin-bottom:var(--space-4);">
+        <div>
+          <span class="badge badge-green" style="margin-bottom:.5rem;">
+            <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M9 7l8 5-8 5z"/></svg>
+            Círculo: liberada para matrícula
+          </span>
+          <h2 style="margin-top:.4rem;">MCTA018-13 — Estruturas de Dados e Análise de Algoritmos</h2>
+          <p class="text-muted" style="margin-top:.3rem;">Bacharelado em Ciência da Computação · CMCC · Carga horária: 72h</p>
+        </div>
+        <a class="btn btn-secondary" href="biblioteca.html">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M4 19V5a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v14l-4-2-4 2-4-2-4 2z"/></svg>
+          Ver ementa e materiais didáticos
+        </a>
+      </div>
+
+      <div class="detail-grid">
+        <div class="card detail-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+            Pré-requisitos cumpridos
+          </h3>
+          <p class="text-muted" style="font-size:.85rem;margin-bottom:.6rem;">Disciplinas já aprovadas no seu histórico.</p>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.8 5.6H20l-4.6 3.3 1.8 5.6L12 13.2 6.8 16.5l1.8-5.6L4 7.6h6.2z"/></svg>
+              MCTA010-13 — Prog. Estruturada
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2l1.8 5.6H20l-4.6 3.3 1.8 5.6L12 13.2 6.8 16.5l1.8-5.6L4 7.6h6.2z"/></svg>
+              MCZA001-13 — Bases Computacionais
+            </li>
+          </ul>
+        </div>
+
+        <div class="card detail-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 9v4M12 17h.01"/><path d="M10.3 3.9L2.5 17a2 2 0 0 0 1.7 3h15.6a2 2 0 0 0 1.7-3L13.7 3.9a2 2 0 0 0-3.4 0z"/></svg>
+            Pendências para matrícula
+          </h3>
+          <p class="text-muted" style="font-size:.85rem;margin-bottom:.6rem;">Condições acadêmicas ou co-requisitos obrigatórios.</p>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M8 12l3 3 5-6"/></svg>
+              Nenhuma pendência — 100% elegível para o próximo quadrimestre.
+            </li>
+          </ul>
+        </div>
+
+        <div class="card detail-card">
+          <h3>
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h7l5 6-5 6H7"/></svg>
+            Impacto e desbloqueios
+          </h3>
+          <p class="text-muted" style="font-size:.85rem;margin-bottom:.6rem;">Disciplinas que dependem desta aprovação.</p>
+          <ul>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Teoria dos Grafos (MCTA024-13)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Sistemas Operacionais (MCTA022-13)
+            </li>
+            <li>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="5" y="11" width="14" height="9" rx="1"/><path d="M8 11V7a4 4 0 0 1 8 0v4"/></svg>
+              Compiladores (MCTA030-13)
+            </li>
+          </ul>
+        </div>
+      </div>
+
+      <p style="margin-top:var(--space-5);">
+        <a class="suggest-link" href="index.html#sugestao">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><path d="M12 20h9M16.5 3.5a2.1 2.1 0 0 1 3 3L7 19l-4 1 1-4z"/></svg>
+          Encontrou uma informação errada? Sugira uma correção
+        </a>
+      </p>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div>
+      <h2>Universidade Federal do ABC — SRMD</h2>
+      <p>Sistema de Apoio ao Planejamento Acadêmico e Integração de Materiais Didáticos</p>
+    </div>
+    <nav class="footer-links" aria-label="Links do rodapé">
+      <a href="index.html">Início</a>
+      <a href="grafo.html">Grafo de Recomendações</a>
+      <a href="grade.html">Minha Grade</a>
+      <a href="biblioteca.html">Biblioteca Integrada</a>
+    </nav>
+  </div>
+  <div class="container footer-bottom">© Pró-Reitoria de Graduação (ProGrad) · UFABC — protótipo de interface, sem coleta de dados reais.</div>
+</footer>
+
+<script src="js/script.js"></script>
+</body>
+</html>
