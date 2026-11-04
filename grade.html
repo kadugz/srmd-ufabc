@@ -74,6 +74,19 @@
       </div>
     </section>
 
+    <section class="section" id="grade-atual" aria-labelledby="grade-atual-titulo">
+      <div class="card">
+        <h2 id="grade-atual-titulo">Minha grade do quadrimestre atual</h2>
+        <p class="text-muted" style="font-size:.88rem;margin-top:.3rem;">
+          As disciplinas que você aceitar nas recomendações aparecem aqui. Guardadas apenas neste navegador.
+        </p>
+        <p class="text-muted" id="grade-atual-vazia" style="margin-top:var(--space-4);">
+          Você ainda não aceitou nenhuma disciplina. Use o botão “Aceitar na minha grade” nas recomendações abaixo.
+        </p>
+        <div class="reco-list" id="grade-atual-lista" aria-live="polite" style="margin-top:var(--space-4);"></div>
+      </div>
+    </section>
+
     <section class="section two-col">
 
       <div class="card">
@@ -113,7 +126,7 @@
 
         <div class="reco-list">
 
-          <div class="reco-card">
+          <div class="reco-card" data-code="MCTA024-13" data-name="Teoria dos Grafos">
             <div class="reco-card-top">
               <div>
                 <span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">MCTA024-13</span>
@@ -130,10 +143,14 @@
             <div class="reco-actions">
               <button type="button" class="btn btn-accent btn-sm" data-accept>Aceitar na minha grade</button>
               <button type="button" class="btn btn-ghost btn-sm" data-ignore>Ignorar</button>
+              <a class="btn btn-secondary btn-sm" href="grafo.html?disciplina=MCTA024-13" aria-label="Ver Teoria dos Grafos no grafo de recomendações">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h7l5 6-5 6H7"/></svg>
+                Ver no grafo
+              </a>
             </div>
           </div>
 
-          <div class="reco-card">
+          <div class="reco-card" data-code="MCTA022-13" data-name="Sistemas Operacionais">
             <div class="reco-card-top">
               <div>
                 <span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">MCTA022-13</span>
@@ -150,10 +167,14 @@
             <div class="reco-actions">
               <button type="button" class="btn btn-accent btn-sm" data-accept>Aceitar na minha grade</button>
               <button type="button" class="btn btn-ghost btn-sm" data-ignore>Ignorar</button>
+              <a class="btn btn-secondary btn-sm" href="grafo.html?disciplina=MCTA022-13" aria-label="Ver Sistemas Operacionais no grafo de recomendações">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h7l5 6-5 6H7"/></svg>
+                Ver no grafo
+              </a>
             </div>
           </div>
 
-          <div class="reco-card">
+          <div class="reco-card" data-code="MCTA030-13" data-name="Compiladores">
             <div class="reco-card-top">
               <div>
                 <span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">MCTA030-13</span>
@@ -170,6 +191,10 @@
             <div class="reco-actions">
               <button type="button" class="btn btn-accent btn-sm" data-accept>Aceitar na minha grade</button>
               <button type="button" class="btn btn-ghost btn-sm" data-ignore>Ignorar</button>
+              <a class="btn btn-secondary btn-sm" href="grafo.html?disciplina=MCTA030-13" aria-label="Ver Compiladores no grafo de recomendações">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="5" cy="6" r="2"/><circle cx="5" cy="18" r="2"/><circle cx="19" cy="12" r="2"/><path d="M7 6h7l5 6-5 6H7"/></svg>
+                Ver no grafo
+              </a>
             </div>
           </div>
 
@@ -204,5 +229,67 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script>
+(function () {
+  var KEY = 'srmd_grade_atual';
+  var lista = document.getElementById('grade-atual-lista');
+  var vazia = document.getElementById('grade-atual-vazia');
+  if (!lista) return;
+
+  function load() {
+    try { return JSON.parse(localStorage.getItem(KEY)) || []; } catch (e) { return []; }
+  }
+  function save(items) {
+    try { localStorage.setItem(KEY, JSON.stringify(items)); } catch (e) {}
+  }
+  function esc(t) {
+    var d = document.createElement('div'); d.textContent = t; return d.innerHTML;
+  }
+
+  function render() {
+    var items = load();
+    vazia.hidden = items.length > 0;
+    lista.innerHTML = items.map(function (it) {
+      return '<div class="reco-card" data-grade-code="' + esc(it.code) + '">' +
+        '<div class="reco-card-top"><div>' +
+          '<span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">' + esc(it.code) + '</span>' +
+          '<h3>' + esc(it.name) + '</h3></div>' +
+          '<span class="badge badge-blue">Cursando neste quadrimestre</span>' +
+        '</div>' +
+        '<div class="reco-actions">' +
+          '<a class="btn btn-secondary btn-sm" href="grafo.html?disciplina=' + encodeURIComponent(it.code) + '">Ver no grafo</a>' +
+          '<button type="button" class="btn btn-danger-ghost btn-sm" data-remove-grade>Remover da grade</button>' +
+        '</div></div>';
+    }).join('');
+  }
+
+  document.addEventListener('click', function (e) {
+    var acc = e.target.closest('[data-accept]');
+    if (acc) {
+      var card = acc.closest('.reco-card');
+      var code = card.getAttribute('data-code');
+      var name = card.getAttribute('data-name');
+      var items = load();
+      if (!items.some(function (i) { return i.code === code; })) {
+        items.push({ code: code, name: name });
+        save(items);
+        render();
+      }
+      return;
+    }
+    var rem = e.target.closest('[data-remove-grade]');
+    if (rem) {
+      var code2 = rem.closest('[data-grade-code]').getAttribute('data-grade-code');
+      save(load().filter(function (i) { return i.code !== code2; }));
+      render();
+    }
+  });
+
+  var clear = document.getElementById('clear-history');
+  if (clear) clear.addEventListener('click', function () { /* mantém a grade atual; apaga só o histórico */ });
+
+  render();
+})();
+</script>
 </body>
 </html>
