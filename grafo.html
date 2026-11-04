@@ -26,8 +26,8 @@
       <nav class="main-nav" aria-label="Navegação principal" id="main-nav-mobile">
         <ul>
           <li><a href="index.html">Início</a></li>
-          <li><a href="grafo.html" aria-current="page">Grafo de Recomendações</a></li>
           <li><a href="grade.html">Minha Grade</a></li>
+          <li><a href="grafo.html" aria-current="page">Grafo de Recomendações</a></li>
           <li><a href="biblioteca.html">Biblioteca Integrada</a></li>
         </ul>
       </nav>
@@ -66,6 +66,25 @@
 
 <main id="conteudo-principal">
   <div class="container">
+
+    <section class="section">
+      <div class="section-head">
+        <h2>Buscar disciplina</h2>
+        <p>Pesquise pelo nome ou pelo código para ver os pré-requisitos de outra disciplina.</p>
+      </div>
+      <form class="search-form" id="grafo-search-form" action="grafo.html" role="search" style="background:var(--surface);box-shadow:var(--shadow-sm);border:1px solid var(--border);">
+        <label for="busca-disciplina" class="sr-only">Buscar disciplina por nome ou código</label>
+        <div class="input-wrap">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          <input type="search" id="busca-disciplina" name="busca" placeholder="Ex.: Estruturas de Dados ou MCTA018-13">
+        </div>
+        <button type="submit" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+          Buscar
+        </button>
+      </form>
+      <div class="reco-list" id="grafo-search-results" aria-live="polite" style="margin-top:var(--space-4);"></div>
+    </section>
 
     <section class="section">
       <div class="discipline-head">
@@ -375,8 +394,8 @@
     </div>
     <nav class="footer-links" aria-label="Links do rodapé">
       <a href="index.html">Início</a>
-      <a href="grafo.html">Grafo de Recomendações</a>
       <a href="grade.html">Minha Grade</a>
+      <a href="grafo.html">Grafo de Recomendações</a>
       <a href="biblioteca.html">Biblioteca Integrada</a>
     </nav>
   </div>
@@ -384,5 +403,49 @@
 </footer>
 
 <script src="js/script.js"></script>
+<script>
+(function () {
+  var DISCIPLINAS = [
+    { code: 'MCZA001-13', name: 'Bases Computacionais da Ciência' },
+    { code: 'MCTA010-13', name: 'Programação Estruturada' },
+    { code: 'MCTA018-13', name: 'Estruturas de Dados e Análise de Algoritmos' },
+    { code: 'MCTA024-13', name: 'Teoria dos Grafos' },
+    { code: 'MCTA022-13', name: 'Sistemas Operacionais' },
+    { code: 'MCTA030-13', name: 'Compiladores' }
+  ];
+  var form = document.getElementById('grafo-search-form');
+  var input = document.getElementById('busca-disciplina');
+  var out = document.getElementById('grafo-search-results');
+  if (!form || !input || !out) return;
+
+  function norm(t) {
+    return t.toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '').trim();
+  }
+  function esc(t) { var d = document.createElement('div'); d.textContent = t; return d.innerHTML; }
+
+  function buscar(termo) {
+    var q = norm(termo);
+    if (!q) { out.innerHTML = ''; return; }
+    var achadas = DISCIPLINAS.filter(function (d) {
+      return norm(d.code).indexOf(q) !== -1 || norm(d.name).indexOf(q) !== -1;
+    });
+    if (!achadas.length) {
+      out.innerHTML = '<p class="text-muted">Nenhuma disciplina encontrada para “' + esc(termo) + '”. Tente outro nome ou código.</p>';
+      return;
+    }
+    out.innerHTML = achadas.map(function (d) {
+      return '<div class="reco-card"><div class="reco-card-top"><div>' +
+        '<span class="code text-muted" style="font-family:Consolas, monospace;font-size:.78rem;">' + esc(d.code) + '</span>' +
+        '<h3>' + esc(d.name) + '</h3></div></div>' +
+        '<div class="reco-actions"><a class="btn btn-secondary btn-sm" href="grafo.html?disciplina=' + encodeURIComponent(d.code) + '">Ver no grafo</a></div></div>';
+    }).join('');
+  }
+
+  form.addEventListener('submit', function (e) { e.preventDefault(); buscar(input.value); });
+
+  var busca = new URLSearchParams(window.location.search).get('busca');
+  if (busca) { input.value = busca; buscar(busca); }
+})();
+</script>
 </body>
 </html>
