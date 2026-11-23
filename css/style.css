@@ -61,9 +61,10 @@ html[data-t=hc] .card,html[data-t=hc] .nd,html[data-t=hc] .bar{border:2px solid 
 .why{background:var(--wb);color:var(--wn);border-radius:10px;padding:.6rem .8rem;font-size:.9rem;margin:.6rem 0}
 .cols{display:grid;grid-template-columns:repeat(4,minmax(190px,1fr));gap:1rem;min-width:780px}
 .sc{overflow-x:auto}.cols ul,.lst{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.6rem}
-.nd{display:flex;gap:.6rem;align-items:center;border:2px solid var(--bd);border-radius:10px;padding:.6rem;background:var(--card);min-height:60px}
+.nd{display:flex;gap:.6rem;align-items:center;border:2px solid var(--bd);border-radius:10px;padding:.6rem;background:var(--card);min-height:60px;text-decoration:none}
 .nd small{display:block;color:var(--mu)}.nd em{display:block;font-style:normal;font-weight:700}
 .nd.foco{border-width:4px;min-height:84px}
+a.nd{cursor:pointer}a.nd:hover{border-color:var(--pri)}
 .sh{font-size:1.6rem;width:2rem;text-align:center}.nd.l .sh{color:var(--ok)}
 .chips{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.5rem;margin:1rem 0}
 .chips li{display:inline-flex;align-items:center;gap:.4rem;background:var(--okb);color:var(--fg);border:1px solid var(--bd);border-radius:99px;padding:.25rem .3rem .25rem .8rem}

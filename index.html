@@ -7,14 +7,17 @@
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+<!-- VLibras (vlibras.gov.br): tradução do conteúdo para Libras, avatar 3D.
+     Único recurso da página que precisa de internet (carrega do governo). -->
+<div vw class="enabled"><div vw-access-button class="active"></div><div vw-plugin-wrapper><div class="vw-plugin-top-wrapper"></div></div></div>
 <a class="skip" href="#main">Pular para o conteúdo principal</a>
 <div id="status" class="sr" role="status" aria-live="polite"></div>
 <header>
  <div class="w">
   <div class="top">
    <a class="brand" href="#inicio"><span class="logo" aria-hidden="true">S</span>SRMD <span style="font-weight:400;font-size:.8rem">UFABC</span></a>
-   <nav id="nav" aria-label="Navegação principal"><ul>
-    <li><a href="#inicio">Início</a></li><li><a href="#grade">Minha Grade</a></li><li><a href="#grafo">Grafo de Recomendações</a></li><li><a href="#biblioteca">Biblioteca Integrada</a></li></ul></nav>
+   <nav id="nav" aria-label="Navegação principal"><ul data-kbgroup="h">
+    <li><a href="#inicio" data-kbitem>Início</a></li><li><a href="#grade" data-kbitem>Minha Grade</a></li><li><a href="#grafo" data-kbitem>Grafo de Recomendações</a></li><li><a href="#biblioteca" data-kbitem>Biblioteca Integrada</a></li></ul></nav>
    <div class="sp">
     <button class="btn s" id="pbtn" aria-expanded="false" aria-controls="panel">Preferências de exibição</button>
     <button class="btn s" id="nbtn" aria-expanded="false" aria-controls="nav">Menu</button>
@@ -27,11 +30,11 @@
   <h2>Preferências de exibição</h2>
   <p class="mu">Ficam guardadas só neste aparelho.</p>
   <div class="pg" id="pg"></div>
-  <div class="row">
-   <button class="btn sm" data-a="read">Ler esta página em voz alta</button>
-   <button class="btn s sm" data-a="pause" id="pz">Pausar leitura</button>
-   <button class="btn s sm" data-a="stop">Parar leitura</button>
-   <button class="btn s sm" data-a="reset">Restaurar padrões</button>
+  <div class="row" data-kbgroup="h">
+   <button class="btn sm" data-a="read" data-kbitem>Ler esta página em voz alta</button>
+   <button class="btn s sm" data-a="pause" id="pz" data-kbitem>Pausar leitura</button>
+   <button class="btn s sm" data-a="stop" data-kbitem>Parar leitura</button>
+   <button class="btn s sm" data-a="reset" data-kbitem>Restaurar padrões</button>
   </div>
  </section>
 </div>
@@ -41,5 +44,7 @@
  <a href="#inicio">Início</a><a href="#grade">Minha Grade</a><a href="#grafo">Grafo</a><a href="#biblioteca">Biblioteca</a>
 </div></footer>
 <script src="js/script.js"></script>
+<script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+<script>new window.VLibras.Widget("https://vlibras.gov.br/app");</script>
 </body>
 </html>

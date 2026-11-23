@@ -118,10 +118,11 @@ function resumoTxt(id,hist){var c=COURSES[id],s=status(id,hist),u=UNLOCK[id];
  var faltam=c.pre.filter(function(p){return hist.indexOf(p)<0}).map(function(p){return COURSES[p].name});
  return base+"Está bloqueada: faltam "+faltam.join(", ")+"."}
 function nodeLi(id,hist,foco){var s=status(id,hist),c=COURSES[id];
- return'<li class="nd '+s+(foco?" foco":"")+'"><span class="sh" aria-hidden="true">'+ST[s][0]+'</span><span><small>'+esc(c.code)+'</small><em>'+esc(c.name)+'</em><small>'+ST[s][1]+'</small></span></li>'}
+ var inner='<span class="sh" aria-hidden="true">'+ST[s][0]+'</span><span><small>'+esc(c.code)+'</small><em>'+esc(c.name)+'</em><small>'+ST[s][1]+'</small></span>';
+ return foco?'<li><span class="nd '+s+' foco">'+inner+'</span></li>':'<li><a class="nd '+s+'" href="#grafo:'+id+'" data-kbitem aria-label="'+esc(c.code)+" — "+esc(c.name)+", "+ST[s][1]+'. Ver esta disciplina no grafo.">'+inner+'</a></li>'}
 function grafoCols(f,hist){var c=COURSES[f],pre=c.pre,unl=UNLOCK[f];
  function col(t,ids){return'<div><h3>'+t+'</h3><ul>'+(ids.length?ids.map(function(id){return nodeLi(id,hist,id===f)}).join(""):'<li style="list-style:none" class="mu">Nenhuma</li>')+'</ul></div>'}
- return'<div class="sc" tabindex="0" role="region" aria-label="Vizinhança de pré-requisitos de '+esc(c.name)+' (rolável)"><div class="cols" style="grid-template-columns:repeat(3,minmax(220px,1fr));min-width:640px">'+col("Pré-requisitos diretos",pre)+col("Disciplina em foco",[f])+col("Desbloqueia diretamente",unl)+'</div></div>'}
+ return'<div class="sc" tabindex="0" role="region" aria-label="Vizinhança de pré-requisitos de '+esc(c.name)+' (rolável). Use as setas do teclado para percorrer as disciplinas depois de focar uma delas."><div class="cols" data-kbgroup="g" style="grid-template-columns:repeat(3,minmax(220px,1fr));min-width:640px">'+col("Pré-requisitos diretos",pre)+col("Disciplina em foco",[f])+col("Desbloqueia diretamente",unl)+'</div></div>'}
 function grafoDetail(f,hist){var c=COURSES[f],done=c.pre.filter(function(p){return hist.indexOf(p)>-1}),pend=c.pre.filter(function(p){return hist.indexOf(p)<0}),unl=UNLOCK[f];
  function card(t,body){return'<div class="card"><h3>'+t+'</h3>'+body+'</div>'}
  function listOf(ids,emptyMsg){return ids.length?'<ul class="b">'+ids.map(function(id){return'<li>'+esc(COURSES[id].code)+" — "+esc(COURSES[id].name)+'</li>'}).join("")+'</ul>':'<p class="mu">'+emptyMsg+'</p>'}
@@ -196,7 +197,7 @@ grafo:function(){var hist=get("srmd-hist",[]);
  '<div class="combo-wrap"><div class="row"><label for="fci" class="sr">Escolher disciplina para ver pré-requisitos</label><input type="text" id="fci" class="sf" role="combobox" aria-expanded="'+(fcItems.length>0)+'" aria-controls="fclb" aria-autocomplete="list" aria-activedescendant="'+(fcItems.length?"fcopt"+COMBO.fc.active:"")+'" autocomplete="off" placeholder="Buscar outra disciplina (nome ou código)" value="'+esc(COMBO.fc.q)+'"></div>'+
  '<ul role="listbox" id="fclb" class="combo-lb" aria-label="Sugestões de disciplinas">'+fcItems.map(function(id,i){return optHtml("fc",id,i,COMBO.fc.active)}).join("")+'</ul></div>'+
  '<div class="bar" style="margin:1rem 0"><h2>Resumo em texto</h2><p data-readaloud>'+resumoTxt(f,hist)+'</p></div>'+
- '<div class="row"><button class="btn s" data-a="vw" data-c="grafo" aria-pressed="'+!l+'">Ver grafo</button><button class="btn s" data-a="vw" data-c="lista" aria-pressed="'+l+'">Ver lista completa (27 disciplinas)</button></div>'+
+ '<div class="row" data-kbgroup="h" role="group" aria-label="Como visualizar"><button class="btn s" data-a="vw" data-c="grafo" data-kbitem aria-pressed="'+!l+'">Ver grafo</button><button class="btn s" data-a="vw" data-c="lista" data-kbitem aria-pressed="'+l+'">Ver lista completa (27 disciplinas)</button></div>'+
  '<p class="mu">Legenda: ★ cursada · ● liberada para matrícula · ▣ bloqueada. O status vem sempre em forma, símbolo e texto.</p>'+
  (l?grafoLista(hist):grafoCols(f,hist))+
  grafoDetail(f,hist)+
@@ -234,7 +235,7 @@ grade:function(){var hist=get("srmd-hist",[]),cur=get("srmd-cur",[]),rc=get("srm
   '<a class="btn s sm" href="#grafo:'+id+'">Ver no grafo</a></div></li>'}).join("")+'</ul>':'<p class="mu">Nenhuma recomendação ainda. Adicione disciplinas já cursadas para liberar as próximas.</p>')+
  '</section></div>'},
 biblioteca:function(){return'<h1 tabindex="-1">Biblioteca Integrada</h1><p class="mu">Bibliografia básica e complementar e a disponibilidade do material: físico, digital ou em formato acessível. Cadastrada até agora para '+B.length+' das 27 disciplinas obrigatórias; as demais ainda não têm registro neste protótipo.</p>'+sform("sb","Buscar por disciplina, autor ou código","Ex.: MCCC001-23 ou Cormen",bq)+
-'<div class="row" role="group" aria-label="Filtrar por formato disponível">'+[["todos","Todos os formatos"],["fisico","Físico"],["digital","Digital"],["acessivel","Alternativa acessível"]].map(function(f){return'<button class="btn s sm" data-a="flt" data-c="'+f[0]+'" aria-pressed="'+(bf===f[0])+'">'+f[1]+'</button>'}).join("")+'</div><div id="bl" aria-live="polite"></div>'+
+'<div class="row" data-kbgroup="h" role="group" aria-label="Filtrar por formato disponível">'+[["todos","Todos os formatos"],["fisico","Físico"],["digital","Digital"],["acessivel","Alternativa acessível"]].map(function(f){return'<button class="btn s sm" data-a="flt" data-c="'+f[0]+'" data-kbitem aria-pressed="'+(bf===f[0])+'">'+f[1]+'</button>'}).join("")+'</div><div id="bl" aria-live="polite"></div>'+
 '<section class="card sec"><h2>Não encontrou um material?</h2><a class="btn" href="mailto:equipe-srmd@aluno.ufabc.edu.br?subject=Sugest%C3%A3o%20de%20corre%C3%A7%C3%A3o%20SRMD">Sugerir correção</a></section>'}};
 var first=1;
 function route(focusId){var raw=(location.hash||"#inicio").slice(1);var k=raw.split(":")[0];if(!V[k])k="inicio";$("#v").innerHTML=V[k]();
@@ -298,6 +299,23 @@ document.addEventListener("keydown",function(e){
   if(e.key==="ArrowUp"){e.preventDefault();moveCombo(key,-1);return}
   if(e.key==="Enter"&&COMBO[key].active>-1){e.preventDefault();pickCombo(key,COMBO[key].items[COMBO[key].active]);return}
   if(e.key==="Escape"){COMBO[key].items=[];COMBO[key].active=-1;paintCombo(key);return}
+ }
+ /* Navegação por setas dentro de grupos (menu, alternância de visão, filtros,
+    disciplinas do grafo) — pensada para quem navega só pelo teclado, sem mouse.
+    "h" = só esquerda/direita (linhas de botões); qualquer outro valor = as 4
+    setas avançam/voltam na ordem em que os itens aparecem (grade do grafo). */
+ var grp=e.target.closest("[data-kbgroup]");
+ if(grp){
+  var items=Array.prototype.slice.call(grp.querySelectorAll("[data-kbitem]"));
+  var i=items.indexOf(e.target);
+  if(i>-1){
+   var h=grp.dataset.kbgroup==="h",next=null;
+   if(e.key==="ArrowRight"||(!h&&e.key==="ArrowDown"))next=items[(i+1)%items.length];
+   else if(e.key==="ArrowLeft"||(!h&&e.key==="ArrowUp"))next=items[(i-1+items.length)%items.length];
+   else if(e.key==="Home")next=items[0];
+   else if(e.key==="End")next=items[items.length-1];
+   if(next){e.preventDefault();next.focus();return}
+  }
  }
  if(e.key!=="Escape")return;
  var n=$("#nav");if(n.classList.contains("open")){n.classList.remove("open");$("#nbtn").setAttribute("aria-expanded","false");$("#nbtn").focus()}

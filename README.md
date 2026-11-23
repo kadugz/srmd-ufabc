@@ -65,7 +65,13 @@ protótipo.
   acessível por teclado e leitor de tela, usado tanto para adicionar disciplinas
   cursadas quanto para escolher qual disciplina ver no grafo.
 - Segue os requisitos de design universal e acessibilidade do projeto (WCAG 2.2 nível
-  AA): navegação completa por teclado, status nunca indicado só por cor, alvos de
-  toque mínimos de 44px, alto contraste, ajuste de tamanho de texto até 200%, leitura
-  em voz alta do conteúdo principal e painel de preferências de exibição (tema,
-  fonte, espaçamento, movimento reduzido, contorno de foco).
+  AA): navegação completa por teclado — inclusive por setas dentro de grupos (menu,
+  alternância de visão, filtros, disciplinas do grafo), além do Tab —, status nunca
+  indicado só por cor, alvos de toque mínimos de 44px, alto contraste, ajuste de
+  tamanho de texto até 200%, leitura em voz alta do conteúdo principal e painel de
+  preferências de exibição (tema, fonte, espaçamento, movimento reduzido, contorno
+  de foco).
+- Tradução para Libras via **VLibras** (`vlibras.gov.br`), o widget oficial do
+  governo federal — mesmo usado em sites como o da própria UFABC. É o único recurso
+  da página que depende de internet, já que o avatar e a tradução são carregados do
+  servidor do governo; o restante do site continua funcionando normalmente offline.
