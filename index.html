@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>SRMD — Versão acessível | UFABC</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<a class="skip" href="#main">Pular para o conteúdo principal</a>
+<div id="status" class="sr" role="status" aria-live="polite"></div>
+<header>
+ <div class="w">
+  <div class="top">
+   <a class="brand" href="#inicio"><span class="logo" aria-hidden="true">S</span>SRMD <span style="font-weight:400;font-size:.8rem">UFABC</span></a>
+   <nav id="nav" aria-label="Navegação principal"><ul>
+    <li><a href="#inicio">Início</a></li><li><a href="#grade">Minha Grade</a></li><li><a href="#grafo">Grafo de Recomendações</a></li><li><a href="#biblioteca">Biblioteca Integrada</a></li></ul></nav>
+   <div class="sp">
+    <button class="btn s" id="pbtn" aria-expanded="false" aria-controls="panel">Preferências de exibição</button>
+    <button class="btn s" id="nbtn" aria-expanded="false" aria-controls="nav">Menu</button>
+   </div>
+  </div>
+ </div>
+</header>
+<div class="w" style="margin-top:1rem">
+ <section id="panel" hidden aria-label="Preferências de exibição">
+  <h2>Preferências de exibição</h2>
+  <p class="mu">Ficam guardadas só neste aparelho.</p>
+  <div class="pg" id="pg"></div>
+  <div class="row">
+   <button class="btn sm" data-a="read">Ler esta página em voz alta</button>
+   <button class="btn s sm" data-a="pause" id="pz">Pausar leitura</button>
+   <button class="btn s sm" data-a="stop">Parar leitura</button>
+   <button class="btn s sm" data-a="reset">Restaurar padrões</button>
+  </div>
+ </section>
+</div>
+<main id="main" tabindex="-1"><div class="w" id="v"></div></main>
+<footer><div class="w">
+ <p><strong>Universidade Federal do ABC — SRMD</strong><br>Protótipo de interface (versão acessível), sem coleta de dados reais. Catálogo de disciplinas baseado no Projeto Pedagógico do BCC. © ProGrad · UFABC</p>
+ <a href="#inicio">Início</a><a href="#grade">Minha Grade</a><a href="#grafo">Grafo</a><a href="#biblioteca">Biblioteca</a>
+</div></footer>
+<script src="js/script.js"></script>
+</body>
+</html>
